@@ -68,9 +68,9 @@ ljós og blek-spör á pappír. Sömu fontar og sama merki, svo þeir lesast sem
 
 ## Legó með leiðbeiningum
 
-Þetta er ekki bara minningabók — þetta er **legó með leiðbeiningum**. Óbeint
-endurmenntunarnámskeið í að nota stór mállíkön, þar sem afurðin er *tilfinningalega þess
-virði* (saga barnsins þíns af mótinu) — svo þú klárar hana, og lærir kerfið í verki um leið.
+Þetta er ekki bara minningabók — þetta er **legó með leiðbeiningum**. Leikandi, verkleg
+leið til að ná tökum á stórum mállíkönum, þar sem afurðin er *tilfinningalega þess virði*
+(saga barnsins þíns af mótinu) — svo þú klárar hana, og lærir kerfið í verki um leið.
 Leiðbeiningarnar fylgja með; allir ættu að geta sett þetta saman.
 
 Og það er ekki bundið við fótbolta. **Hvaða viðburður sem er** dugar — handbolti, fimleikar,
