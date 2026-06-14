@@ -50,6 +50,22 @@ This is **Skill 2 of 2**.
 - `templates/` — `server.mjs` (gated, zero-dep), `gate.html`, `index.html`,
   `docker-compose.yml`, `Dockerfile`, `data.example.json`.
 
+## Vendor-agnostic — a Sumarhús staple (do not lock to one provider)
+
+The **photo source is an adapter.** `harvest-album.sh` is just the Google Photos
+adapter. Swap it freely:
+
+| Source | How |
+|---|---|
+| **A local folder** (universal — works out of the box) | skip `harvest-album.sh`; point `match-photos.py` at any folder of photos. This is the simplest, most portable source. |
+| **Dropbox / iCloud shared album / S3 / Nextcloud** | write a small adapter that downloads originals (with EXIF) into a folder, then continue exactly as with the local folder. |
+| **Google Photos shared link** | `harvest-album.sh` (headless Chrome). |
+
+Everything downstream (`match-photos.py` → editor → build → site) only ever sees a
+**folder of original photos** — so any source that can produce that folder works. The
+same agnosticism applies to the results feed, the vision model, and the hosting.
+Never hard-code a single vendor.
+
 ## Rules (do NOT skip)
 
 1. **Photos are unaltered — and any alteration is disclosed.** No image is changed

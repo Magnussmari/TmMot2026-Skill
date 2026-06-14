@@ -7,126 +7,138 @@
   </a>
 </p>
 
-<h1 align="center">🏆 TmMót 2026 — tournament memory, automated</h1>
+<h1 align="center">🏆 TM-mót 2026 — minningar af móti, sjálfvirkt</h1>
 
 <p align="center">
-  Tell it <b>which team you followed</b>. It fetches the story of the whole tournament —<br>
-  every game, the standings, the analysis — pairs it with your shared photo album,<br>
-  and builds two keepsakes from one source of truth:<br>
-  a <b>live, private dashboard</b> and a <b>light, print-ready PDF memory book</b>.
+  Segðu því bara <b>hvaða liði þú fylgdist með</b>. Það sækir söguna um allt mótið —<br>
+  hvern leik, stöðuna, greininguna — parar hana við deilda myndaalbúmið þitt,<br>
+  og býr til tvo minningagripi úr einni sameiginlegri heimild:<br>
+  <b>lifandi, lokað mælaborð</b> og <b>ljósa, prentvæna minningabók í PDF</b>.
 </p>
 
 <p align="center">
-  Two Claude Code skills in one repo · built as a real experiment over one tournament
-  weekend<br>(KA-2 at the TM tournament in Vestmannaeyjar, June 2026), then generalized.
+  Tveir Claude&nbsp;Code skillar í einu repo · gert sem raunveruleg tilraun yfir eina
+  mótshelgi<br>(KA-2 á TM-mótinu í Vestmannaeyjum, júní 2026) og síðan almennt yfirfært.
   <br><br>
-  <b>by Magnús Smári Smárason</b> · <a href="https://www.smarason.is">smarason.is</a>
+  <b>eftir Magnús Smára Smárason</b> · <a href="https://www.smarason.is">smarason.is</a>
 </p>
 
 ---
 
-## The system at a glance
+## Kerfið í einni mynd
 
 ```
         ┌──────────────────────────────────────────────────────────────────┐
-        │  YOU PROVIDE ONLY:  the team you followed  +  a shared album link  │
+        │  ÞÚ GEFUR AÐEINS:  liðið sem þú fylgdist með  +  hlekk á albúm      │
         └──────────────────────────────────────────────────────────────────┘
                               │                               │
               ┌───────────────┘                               └───────────────┐
               ▼                                                                ▼
    ┌─────────────────────┐                                       ┌──────────────────────┐
-   │  OFFICIAL RESULTS    │                                       │  SHARED PHOTO ALBUM   │
-   │  feed (tmmotid.is)   │                                       │  (Google Photos link) │
+   │  ÚRSLITAVEITA (skipt-│                                       │  MYNDAHEIMILD (adapter)│
+   │  anleg) t.d. tmmotid │                                       │  GPhotos·Dropbox·mappa │
    └──────────┬──────────┘                                       └───────────┬──────────┘
-              │  agent + Python on a timer                                    │  headless Chrome
-              │  scrape played games only · diff · rebuild on change          │  harvest originals + EXIF
+              │  erindreki + Python á millibili                               │  headless / API / FS
+              │  skrapar aðeins spilaða leiki · ber saman · byggir við breytingu  frumrit + EXIF
               ▼                                                                ▼
-   ╔═════════════════════ SKILL 1 · tmmot-results ═══════╗        ╔════ SKILL 2 · tmmot-album ════════╗
-   ║  matches · standings · per-game form                ║        ║  EXIF time → which game            ║
-   ║  full-tournament analysis · team-in-context         ║        ║  LOCAL vision model (Gemma 3 12B,  ║
-   ║  (optional) parent heart-rate per game              ║        ║  on your own hardware) describes   ║
-   ╚════════════════════════╤════════════════════════════╝        ║  & sorts — photos never leave box  ║
-                            │                                     ║  owner picks cover + gallery        ║
+   ╔═══════════ SKILL 1 · tmmot-results ═════════════════╗        ╔════ SKILL 2 · tmmot-album ════════╗
+   ║  leikir · staðan · form hvers leiks                 ║        ║  EXIF-tími → hvaða leikur          ║
+   ║  heildargreining mótsins · liðið í samhengi         ║        ║  STAÐBUNDIÐ myndalíkan (Gemma 3    ║
+   ║  (valfrjálst) púls pabbans á hverjum leik           ║        ║  12B, á eigin vélbúnaði) lýsir og  ║
+   ╚════════════════════════╤════════════════════════════╝        ║  raðar — myndir fara aldrei út     ║
+                            │                                     ║  eigandinn velur forsíðu + gallerí  ║
                             ▼                                     ╚═══════════════╤═══════════════════╝
                   ┌───────────────────┐                                          │
-                  │     data.json     │ ◄────────── one source of truth ─────────┘
+                  │     data.json     │ ◄────────── ein sameiginleg heimild ─────┘
                   └─────────┬─────────┘
             ┌───────────────┴────────────────┐
             ▼                                 ▼
    ┌──────────────────────┐        ┌──────────────────────────┐
-   │  LIVE DASHBOARD       │        │  PDF MEMORY BOOK          │
-   │  zero-dep Node server │        │  Quarto + xelatex         │
-   │  PIN-gated · liquid   │        │  LIGHT · print-ready      │
-   │  glass · dark (screen)│        │  same fonts + crest       │
+   │  LIFANDI MÆLABORÐ      │        │  MINNINGABÓK Í PDF        │
+   │  núll-háð Node-þjónn   │        │  Quarto + xelatex         │
+   │  PIN-lokað · liquid    │        │  LJÓS · prentvæn          │
+   │  glass · dökkt (skjár) │        │  sömu fontar + merki      │
    └──────────────────────┘        └──────────────────────────┘
 ```
 
-**One `data.json` → two media, fit to each:** dark liquid-glass on the screen,
-light and ink-frugal on paper. Same fonts and crest, so they read as one identity.
+**Ein `data.json` → tveir miðlar, hvor sniðinn að sínum:** dökkt liquid-glass á skjánum,
+ljós og blek-spör á pappír. Sömu fontar og sama merki, svo þeir lesast sem ein heild.
 
 ---
 
-## The two skills
+## Skillarnir tveir
 
-| Skill | Does | You give it |
+| Skill | Gerir | Þú gefur því |
 |---|---|---|
-| **`tmmot-results`** | Fetches the team's games, standings, and full-tournament analysis from the official feed. Runs on a timer; rebuilds only on a real change. | the **team name** + the results URL |
-| **`tmmot-album`** | Harvests the shared album, matches photos to games by time, describes them with a **local** vision model, lets you pick cover + gallery, and builds the gated site + the light PDF book. | the **album link** + the data from skill 1 |
+| **`tmmot-results`** | Sækir leiki liðsins, stöðuna og heildargreiningu mótsins af opinberu úrslitasíðunni. Keyrir á millibili; byggir aðeins við raunverulega breytingu. | **liðsnafnið** + slóð úrslitasíðunnar |
+| **`tmmot-album`** | Harvestar deilda albúmið, raðar myndum á leiki eftir tíma, lýsir þeim með **staðbundnu** myndalíkani, lætur þig velja forsíðu + gallerí, og byggir lokaða mælaborðið + ljósu PDF-bókina. | **albúm-hlekkinn** + gögnin úr skilli 1 |
 
-Drop `skills/tmmot-results/` and `skills/tmmot-album/` into your Claude Code
-`~/.claude/skills/` (or a project `.claude/skills/`). Then just say what you want.
-
----
-
-## Non-negotiable principles
-
-- **Photos are unaltered — and any alteration is disclosed.** No image is changed by
-  the system beyond what the phone that took it already does. The vision model only
-  *describes and sorts*; it never edits. If a photo is edited beyond that, the page
-  says so plainly.
-- **Privacy first.** Children on the open internet → `noindex`, robots `Disallow: /`,
-  everything (incl. the album link) behind a PIN, no children's names except the
-  owner's own messages. The vision model runs on **your** hardware; photos never leave it.
-- **No fake-green data.** Only games that were actually played; "last updated" shown;
-  hand-added games disclosed as hand-added.
-- **Verify the whole page in a real browser after every change.** (A single
-  out-of-scope reference once blanked the entire JS-rendered page while one field still
-  showed — read-one-field "verification" is not verification.)
-- **Light for print, glass for screen.** Dark full-bleed is wrong for a printed book.
+Settu `skills/tmmot-results/` og `skills/tmmot-album/` í Claude Code `~/.claude/skills/`
+(eða í `.claude/skills/` verkefnis). Svo segirðu bara hvað þú vilt.
 
 ---
 
-## Quickstart
+## Ófrávíkjanlegar meginreglur
+
+- **Óháð söluaðilum (vendor-agnostic) — staðall hjá Sumarhúsum.** Ekkert er læst við
+  einn þjónustuaðila. **Myndaheimildin er adapter:** Google Photos er aðeins einn —
+  settu Dropbox, iCloud deilt albúm, **möppu á disknum** (alheims-leiðin, virkar
+  strax), eða S3-fötu í staðinn. Sama gildir um úrslitaveituna, myndalíkanið
+  (Gemma á eigin vélbúnaði, eða hvað sem er) og hýsinguna. Skiptu hverju sem er út.
+- **Myndirnar eru ófalsaðar — og sé einhverju breytt er það tekið fram.** Engri mynd
+  er breytt af kerfinu umfram það sem síminn sem tók hana gerir sjálfur. Myndalíkanið
+  aðeins *lýsir og raðar*; það breytir aldrei mynd. Sé mynd breytt umfram það, segir
+  síðan það skýrt.
+- **Persónuvernd fyrst.** Börn á opnu interneti → `noindex`, robots `Disallow: /`, allt
+  (þ.m.t. albúm-hlekkurinn) bak við PIN, engin nöfn barna nema í kveðjum sem eigandinn
+  skrifar sjálfur. Myndalíkanið keyrir á **þínum** vélbúnaði; myndir fara aldrei út af honum.
+- **Engin fals-græn gögn.** Aðeins leikir sem voru raunverulega spilaðir; „síðast
+  uppfært" sýnilegt; handfærðir leikir merktir sem handfærðir.
+- **Sannreyndu alla síðuna í alvöru vafra eftir hverja breytingu.** (Ein tilvísun utan
+  skóps þurrkaði eitt sinn út alla JS-rendaðu síðuna á meðan einn reitur sást enn —
+  að lesa einn reit er ekki sannreyning.)
+- **Ljóst fyrir prent, gler fyrir skjá.** Dökkt full-bleed er rangt fyrir prentaða bók.
+
+---
+
+## Fljótbyrjun
 
 ```bash
-# 1. results layer — fetch the tournament for your team
-python3 skills/tmmot-results/tools/refresh-urslit.py      # edit TEAM + feed URL at top
+# 1. úrslit — sæktu mótið fyrir liðið þitt
+python3 skills/tmmot-results/tools/refresh-urslit.py      # breyttu TEAM + slóð efst
 
-# 2. photos — harvest the shared album, match to games
-bash   skills/tmmot-album/tools/harvest-album.sh <album-link> ~/Pictures/<event>
+# 2. myndir — harvestaðu deilda albúmið, raðaðu á leiki
+bash   skills/tmmot-album/tools/harvest-album.sh <albúm-hlekkur> ~/Pictures/<mót>
 python3 skills/tmmot-album/tools/match-photos.py
 
-# 3. pick + build — local web picker → light PDF + site gallery + deploy
+# 3. velja + byggja — staðbundinn mynda-editor → ljós PDF + síðu-gallerí + deploy
 python3 skills/tmmot-album/tools/editor.py                # → http://localhost:8765
 
-# 4. site — runs anywhere Docker + a tunnel run
-cp -r skills/tmmot-album/templates/* apps/<event>/ && docker compose up -d --build
+# 4. síðan — keyrir hvar sem Docker + göng keyra
+cp -r skills/tmmot-album/templates/* apps/<mót>/ && docker compose up -d --build
 ```
 
-A full demo memory book is in [`demo/`](demo/).
+---
+
+## Sýnishorn — sjáðu minningabókina
+
+Heil sýnis-minningabók: **[`demo/minningabok-demo.pdf`](demo/minningabok-demo.pdf)**.
+Allt í henni er **uppspuni** — liðið *Eldey U11*, úrslitin og myndirnar (gerðar með
+myndalíkani, **ekkert raunverulegt fólk**) — svo óhætt er að deila henni á meðan hún
+sýnir nákvæmlega það sem kerfið býr til úr alvöru móti. Endurbyggðu hana sjálf með
+`python3 demo/build-mock.py`.
+
+<p align="center">
+  <img src="demo/sample-cover.jpg" alt="Forsíða sýnis-minningabókar — uppspunnið lið, myndir gerðar með myndalíkani" width="460">
+</p>
+
+> Sérhver mynd á alvöru síðu er **ófölsuð** umfram það sem síminn gerir; sýnishorns-
+> myndirnar eru skýrt merktar sem gerðar. Sé einhverju breytt er það tekið fram.
 
 ---
 
-## Demo
+*Gerðu það að þínu.* Skiptu út opinberu úrslitasíðunni, albúm-heimildinni, staðbundna
+líkaninu, litunum og merkinu. Hryggjarstykkið — ein `data.json` → lokuð skjáupplifun +
+ljós prentanleg bók, sannreynt í alvöru vafra — er það sem er þess virði að halda.
 
-See **[`demo/minningabok-demo.pdf`](demo/minningabok-demo.pdf)** — the same light
-print layout, built from placeholder content (no real photos), so you can see the
-shape of the keepsake before you point it at your own tournament.
-
----
-
-*Make it yours.* Swap the official feed, the album source, the local model, the palette
-and crest. The spine — one `data.json` → a gated screen experience + a light printable
-book, verified in a real browser — is the part worth keeping.
-
-MIT licensed. Built with [Claude Code](https://claude.com/claude-code).
+MIT-leyfi. Gert með [Claude Code](https://claude.com/claude-code).
