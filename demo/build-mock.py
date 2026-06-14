@@ -15,7 +15,7 @@ IMG.mkdir(parents=True)
 brand = (TOOLS/"_brand.tex").read_text()
 brand = (brand.replace("SAGA KA\\textcolor{goldbright}{-}2", "ELDEY\\,\\textcolor{goldbright}{U11}")
               .replace("TM-MÓTIÐ Í VESTMANNAEYJUM", "SUMARMÓTIÐ 2026")
-              .replace("11.–13. júní 2026 · 10 leikir · Riðill C10", "Sýnishorn · falskt lið · fake myndir")
+              .replace("11.–13. júní 2026 · 10 leikir · Riðill C10", "Sýnishorn · teiknimyndir · bara gaman")
               .replace("SAGA KA-2", "ELDEY U11"))
 (W/"_brand.tex").write_text(brand)
 shutil.copy(TOOLS/"_quarto.yml", W/"_quarto.yml")
@@ -33,7 +33,7 @@ for src, dst in [("g1.jpg","d1.jpg"),("g4.jpg","d2.jpg"),("g3.jpg","d3.jpg"),("g
 L = ["---","format: pdf","---","","```{=latex}",
  "\\glasscover{img/forsida.jpg}",
  "\\dayhead{Minningabók · Sýnishorn}{Mótinu lokið}","\\goldrule",
- "\\textit{Þetta er sýnishorn.} Liðið Eldey U11, úrslitin og myndirnar eru \\textbf{öll fölsuð} — myndirnar eru gerðar með myndalíkani (nano-banana), ekki raunverulegt fólk. Sýnir ljóst, prentvænt útlit minningabókarinnar sem kerfið býr til úr alvöru móti.","",
+ "\\textit{Þetta er sýnishorn — bara gaman.} Stúlknaliðið Eldey U11, úrslitin og myndirnar eru \\textbf{öll skálduð}. Myndirnar eru ýktar \\textbf{teiknimyndir} gerðar með myndalíkani — ekkert raunverulegt fólk, bara ýktar Vestmannaeyjar með hvölum, lundum og þjóðhátíðarstemmingu. Sýnir ljóst, prentvænt útlit minningabókarinnar sem kerfið býr til úr alvöru móti.","",
  "\\lead{Þrír dagar, tíu leikir, ein helgi — svona lítur keepsake-bókin út.}","\\clearpage",
  "\\dayhead{Fimmtudagur}{Fyrsti dagur — þrír sigrar}",
  "\\gamehead{Eldey \\textendash\\ Vík-2}{3\\,–\\,1}","\\meta{kl. 13:40 \\, · \\, sigur}",
