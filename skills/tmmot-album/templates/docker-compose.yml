@@ -1,0 +1,16 @@
+# @orchestrator: Magnús Smárason | smarason.is  @created: 2026-06-12
+# ka2.sumarhus.com — KA-2 á Eyjamótinu. Loopback-port; token-stýrða tunnelið
+# á hýslinum (network_mode: host) nær í http://localhost:4250.
+services:
+  ka2:
+    build: .
+    image: ka2-eyjamot:latest
+    container_name: ka2-eyjamot
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - KA2_UPLOADS=/app/uploads
+    volumes:
+      - ./uploads:/app/uploads   # myndbönd foreldra — lifa af endurbyggingu
+    ports:
+      - "127.0.0.1:4250:4250"

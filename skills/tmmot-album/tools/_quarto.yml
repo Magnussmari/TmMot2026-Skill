@@ -1,0 +1,47 @@
+# @orchestrator: Magnús Smárason | smarason.is  @created: 2026-06-13
+# Saga KA-2 — minnisbók (PDF) í Útsýni-frá-Sumarhúsum hönnunarmáli.
+# Meginmál = Inter (sans, eins og Útsýni), fyrirsagnir = Newsreader (\serif í _brand.tex).
+# Engin sjálfgefin titilsíða (titill kemur úr \utcover). xelatex + A4 + rjóma-pappír.
+
+project:
+  type: default
+  output-dir: _book
+  render:
+    - index.qmd
+
+format:
+  pdf:
+    output-file: "Saga-KA2-TM-motid-2026.pdf"
+    pdf-engine: xelatex
+    documentclass: scrbook
+    classoption: [oneside, paper=a4]
+    papersize: a4
+    fontsize: 11pt
+    linestretch: 1.42
+    geometry:
+      - margin=2.2cm
+      - bottom=2.6cm
+    toc: false
+    number-sections: false
+    colorlinks: true
+    keep-tex: true
+    latex-auto-install: false
+    # Inndregnir stöðugir fontar (fonts/) — Instrument Sans = sami og vefurinn
+    mainfont: "Instrument"
+    mainfontoptions:
+      - "Path=fonts/"
+      - "Extension=.ttf"
+      - "UprightFont=Instrument-Regular"
+      - "BoldFont=Instrument-SemiBold"
+      - "ItalicFont=Instrument-Italic"
+      - "BoldItalicFont=Instrument-Italic"
+    sansfont: "Instrument"
+    sansfontoptions:
+      - "Path=fonts/"
+      - "Extension=.ttf"
+      - "UprightFont=Instrument-Regular"
+      - "BoldFont=Instrument-SemiBold"
+      - "ItalicFont=Instrument-Italic"
+      - "BoldItalicFont=Instrument-Italic"
+    include-in-header:
+      - _brand.tex

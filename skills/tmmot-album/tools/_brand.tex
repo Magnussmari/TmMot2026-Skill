@@ -1,0 +1,94 @@
+% @orchestrator: Magnús Smárason | smarason.is  @created: 2026-06-13  @rev: 2026-06-14 (ljós prent-útgáfa)
+% KA-2 minningabók — LJÓS, PRENTVÆN. Engir þungir dökkir fletir (sparar blek,
+% léttara í hendi). Hvítur pappír, navy texti, KA-gull hóflega. Fontar = sömu og
+% vefurinn (Big Shoulders Display + Instrument Sans) f. heildarsvip.
+% Háð MacTeX-full: xcolor, eso-pic, graphicx, fontspec, needspace.
+
+\usepackage{xcolor}
+\definecolor{paper}{HTML}{FFFFFF}     % hvítur (prentvænn)
+\definecolor{ink}{HTML}{11203F}       % djúp-navy texti
+\definecolor{gold}{HTML}{B8860B}      % djúp-gull (læsilegt á hvítu)
+\definecolor{goldbright}{HTML}{F2B705}% KA-gull (fletir/pillur)
+\definecolor{mute}{HTML}{6B7280}      % grátt
+\definecolor{line}{HTML}{E3E1DA}      % ljós-tan strik
+\definecolor{paperwarm}{HTML}{FBFAF6} % örlítið hlýr f. spjöld
+
+\pagecolor{paper}
+\AtBeginDocument{\color{ink}}
+
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{fontspec}
+\usepackage{needspace}
+
+% fontar (bundlaðir)
+\newfontfamily\disp{BigShoulders}[
+  Path=fonts/, Extension=.ttf,
+  UprightFont=BigShoulders-Bold, BoldFont=BigShoulders-Black]
+\newfontfamily\dispxb{BigShoulders}[
+  Path=fonts/, Extension=.ttf, UprightFont=BigShoulders-ExtraBold]
+
+% augabrún (Big Shoulders, djúp-gull, letterspaced)
+\newcommand{\eyebrow}[1]{%
+  {\disp\fontsize{11}{13}\selectfont\color{gold}\addfontfeature{LetterSpace=24.0}\MakeUppercase{#1}}}
+\newcommand{\eyebrowm}[1]{%
+  {\disp\fontsize{10}{12}\selectfont\color{mute}\addfontfeature{LetterSpace=20.0}\MakeUppercase{#1}}}
+
+% gull-strik
+\newcommand{\goldrule}{\par\smallskip{\color{goldbright}\rule{16mm}{1.6pt}}\par\smallskip}
+
+% úrslita-pilla (gull fyllt, navy texti — virkar á hvítu)
+\newcommand{\scorepill}[1]{\raisebox{-1pt}{\colorbox{goldbright}{\color{ink}\dispxb\fontsize{16}{16}\selectfont\,#1\,}}}
+
+% dag-fyrirsögn
+\newcommand{\dayhead}[2]{%
+  \par\vspace{2mm}\noindent\eyebrow{#1}\par\vspace{1.2mm}
+  \noindent{\dispxb\fontsize{38}{40}\selectfont\color{ink}\MakeUppercase{#2}}\par\vspace{1mm}}
+
+% leik-fyrirsögn: lið + gull-pilla
+\newcommand{\gamehead}[2]{%
+  \Needspace*{0.46\textheight}%
+  \par\vspace{3.5mm}\noindent{\disp\fontsize{21}{24}\selectfont\color{ink}\MakeUppercase{#1}}\;\;{\scorepill{#2}}\par\vspace{0.6mm}}
+
+% meta / lead / sign
+\newcommand{\meta}[1]{\par{\addfontfeature{LetterSpace=3}\small\color{mute}#1}\par}
+\newcommand{\lead}[1]{\par\smallskip{\disp\fontsize{18}{24}\selectfont\color{gold}#1}\par\smallskip}
+\newcommand{\sign}[1]{\par\vspace{2mm}{\itshape\color{mute}#1}\par}
+
+% mynd í ljósum ramma (hvít mött + þunn tan-lína + mjúkur ljós skuggi) + hástafa-texti
+\newcommand{\glassphoto}[2]{%
+  \par\medskip\begin{center}%
+  \setlength{\fboxsep}{1.6mm}\setlength{\fboxrule}{0.4pt}%
+  \fcolorbox{line}{white}{\includegraphics[width=0.9\linewidth,height=0.62\textheight,keepaspectratio]{#1}}%
+  \ifx\relax#2\relax\else\par\vspace{2.2mm}{\disp\fontsize{9}{11}\selectfont\color{mute}\addfontfeature{LetterSpace=12.0}\MakeUppercase{#2}}\fi%
+  \end{center}\par\medskip}
+
+% texti-spjald (örlítið hlýr bakgrunnur, mjög léttur)
+\newenvironment{glasscard}{\par\medskip\begin{minipage}{\linewidth}\setlength{\fboxsep}{5mm}\noindent\colorbox{paperwarm}{\begin{minipage}{\dimexpr\linewidth-10mm}}{\end{minipage}}\end{minipage}\par\medskip}
+
+% ---- forsíða: liðsmynd fullbreidd efst (ÖLL andlit, engin slæða) + ljóst titilsvæði ----
+\newcommand{\glasscover}[1]{%
+  \thispagestyle{empty}%
+  \AddToShipoutPictureBG*{\AtPageUpperLeft{%
+    \raisebox{-\height}{\includegraphics[width=\paperwidth]{#1}}}}%
+  % titilsvæði neðst, á hvítu (myndin nær ekki niður í það)
+  \null\vfill
+  \noindent\hspace{6mm}\begin{minipage}{0.9\linewidth}
+    \eyebrow{Minningabók · Sumarhús}\par\vspace{2mm}
+    {\dispxb\fontsize{62}{60}\selectfont\color{ink}SAGA KA\textcolor{goldbright}{-}2}\par\vspace{1.5mm}
+    {\disp\fontsize{22}{26}\selectfont\color{gold}TM-MÓTIÐ Í VESTMANNAEYJUM}\par\vspace{2mm}
+    {\color{goldbright}\rule{20mm}{1.6pt}}\par\vspace{2mm}
+    \eyebrowm{11.–13. júní 2026 · 10 leikir · Riðill C10}
+  \end{minipage}\par\vspace{14mm}\clearpage}
+
+% ---- fótur (létt) ----
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}
+\newcommand{\katfoot}{{\color{line}\rule{\linewidth}{0.4pt}}\\[1mm]%
+  {\disp\footnotesize\color{mute}\addfontfeature{LetterSpace=8}SAGA KA-2}\hfill
+  {\disp\footnotesize\color{mute}\addfontfeature{LetterSpace=8}SUMARHÚS · 2026}}
+\fancyfoot[C]{\katfoot}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\katfoot}}
+
+\AtBeginDocument{\hypersetup{linkcolor=gold, urlcolor=gold, citecolor=gold}}

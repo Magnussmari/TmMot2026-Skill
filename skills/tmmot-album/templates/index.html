@@ -1,0 +1,789 @@
+<!doctype html>
+<!-- @orchestrator: Magnús Smárason | smarason.is  @created: 2026-06-12 -->
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>KA-2 · Eyjamótið 2026 · Riðill C10</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23081020'/><text x='16' y='22' font-family='Arial Black' font-size='13' font-weight='900' fill='%23f2b705' text-anchor='middle'>KA</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#070d1c;--navy:#0b1430;--panel:#0e1836;--line:rgba(244,241,232,.09);
+  --gold:#f2b705;--gold-soft:#ffd95e;--gold-dim:rgba(242,183,5,.14);
+  --bone:#f4f1e8;--mute:#8d99b8;--green:#43d17c;--red:#e0524f;--amber:#e8a13c;
+  --disp:"Big Shoulders Display",sans-serif;--body:"Instrument Sans",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--bone);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased;position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:
+ radial-gradient(70rem 45rem at 75% -12%,rgba(242,183,5,.10),transparent 60%),
+ radial-gradient(55rem 55rem at -10% 30%,rgba(28,60,140,.30),transparent 60%),
+ repeating-linear-gradient(115deg,transparent 0 46px,rgba(255,255,255,.012) 46px 48px)}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E")}
+main{position:relative;z-index:1;max-width:72rem;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) calc(7.5rem + env(safe-area-inset-bottom))}
+section{scroll-margin-top:1.2rem}
+
+/* topbar */
+header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.75rem}
+.brand svg{width:34px;height:39px;flex:none}
+.brand b{font-family:var(--disp);font-weight:900;font-size:1.25rem;letter-spacing:.06em}
+.brand span{color:var(--mute);font-size:.8rem;display:block;margin-top:-2px}
+.chip{font-family:var(--disp);font-weight:700;letter-spacing:.22em;font-size:.78rem;color:var(--gold);border:1px solid rgba(242,183,5,.35);border-radius:99px;padding:.35rem .9rem;white-space:nowrap}
+
+/* hero */
+.hero{padding:clamp(2.2rem,6vw,4rem) 0 2rem;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.dayline{font-family:var(--disp);font-weight:600;letter-spacing:.3em;text-transform:uppercase;font-size:.82rem;color:var(--gold);margin-bottom:1rem}
+.dayline em{font-style:normal;color:var(--mute);letter-spacing:.12em}
+.next{background:linear-gradient(160deg,var(--panel),#0a122b 70%);border:1px solid var(--line);border-radius:1.2rem;padding:clamp(1.4rem,4vw,2.6rem);position:relative;overflow:hidden}
+.next::before{content:"";position:absolute;inset:0;background:radial-gradient(40rem 18rem at 85% 0%,var(--gold-dim),transparent 65%);pointer-events:none}
+.next .eyebrow{font-family:var(--disp);font-weight:700;letter-spacing:.34em;font-size:.78rem;color:var(--gold);text-transform:uppercase}
+.next h1{font-family:var(--disp);font-weight:900;font-size:clamp(2.5rem,8.5vw,5.2rem);line-height:.98;margin:.5rem 0 .3rem;text-wrap:balance}
+.next h1 .vs{color:var(--gold);font-size:.55em;font-weight:700;vertical-align:.22em;margin:0 .18em}
+.meta{color:var(--mute);font-size:clamp(.92rem,2.4vw,1.05rem)}
+.meta b{color:var(--bone);font-weight:600}
+.count{display:flex;gap:clamp(.6rem,2.5vw,1.2rem);margin-top:1.6rem}
+.count div{text-align:center;min-width:clamp(3.6rem,14vw,5.4rem);background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:.8rem;padding:.7rem .4rem .55rem}
+.count b{font-family:var(--disp);font-weight:900;font-size:clamp(2rem,7vw,3.4rem);line-height:1;display:block;font-variant-numeric:tabular-nums}
+.count span{font-size:.68rem;letter-spacing:.2em;color:var(--mute);text-transform:uppercase}
+.livepill{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.4rem;font-family:var(--disp);font-weight:700;letter-spacing:.2em;color:var(--green);font-size:1rem}
+.livepill i{width:.6rem;height:.6rem;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.25}}
+
+/* sections */
+section{margin-top:clamp(2.6rem,7vw,4.2rem)}
+.sechead{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.2rem}
+.sechead h2{font-family:var(--disp);font-weight:900;font-size:clamp(1.6rem,4.5vw,2.3rem);letter-spacing:.04em;text-transform:uppercase}
+.sechead::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+/* schedule */
+.match{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:1rem;padding:1.1rem 1.3rem;margin-bottom:.7rem;transition:border-color .2s}
+.match:hover{border-color:rgba(242,183,5,.35)}
+.match .t{font-family:var(--disp);font-weight:900;font-size:clamp(1.5rem,4.5vw,2rem);color:var(--gold);font-variant-numeric:tabular-nums}
+.match .who b{font-weight:600;font-size:clamp(1rem,3vw,1.15rem)}
+.match .who span{display:block;color:var(--mute);font-size:.85rem}
+.match .st{font-family:var(--disp);font-weight:700;letter-spacing:.14em;font-size:.8rem;padding:.35rem .8rem;border-radius:99px;border:1px solid var(--line);color:var(--mute);white-space:nowrap}
+.match .st.next{color:var(--gold);border-color:rgba(242,183,5,.4)}
+.match .st.live{color:var(--green);border-color:rgba(67,209,124,.4)}
+.match .st.done{color:var(--bone);background:rgba(255,255,255,.05)}
+.match .st.score{font-size:1.05rem;letter-spacing:.06em}
+
+/* stat band */
+.band{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:.7rem}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:1rem;padding:1.3rem 1rem;text-align:center;position:relative;overflow:hidden}
+.stat::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--gold),transparent)}
+.stat b{font-family:var(--disp);font-weight:900;font-size:clamp(2.6rem,8vw,3.6rem);line-height:1;display:block;font-variant-numeric:tabular-nums}
+.stat span{font-size:.72rem;letter-spacing:.22em;color:var(--mute);text-transform:uppercase}
+.bandnote{color:var(--mute);font-size:.85rem;margin-top:.8rem;font-style:italic}
+
+/* dossiers */
+.doss{display:grid;gap:.9rem}
+@media(min-width:820px){.doss{grid-template-columns:repeat(3,1fr)}}
+.opp{background:var(--panel);border:1px solid var(--line);border-radius:1.1rem;padding:1.4rem;display:flex;flex-direction:column;gap:.9rem}
+.opp .top{display:flex;justify-content:space-between;align-items:start;gap:.6rem}
+.opp h3{font-family:var(--disp);font-weight:900;font-size:1.45rem;letter-spacing:.03em;line-height:1.05}
+.opp .when{color:var(--mute);font-size:.8rem;white-space:nowrap;margin-top:.25rem}
+.form{display:flex;gap:.35rem}
+.form i{width:1.7rem;height:1.7rem;border-radius:.45rem;display:grid;place-items:center;font-style:normal;font-family:var(--disp);font-weight:900;font-size:.95rem;color:#08101f}
+.form .S{background:var(--green)}.form .J{background:var(--amber)}.form .T{background:var(--red);color:#fff}
+.gbar{height:.5rem;border-radius:99px;background:rgba(224,82,79,.5);overflow:hidden;display:flex}
+.gbar i{display:block;background:var(--green);height:100%}
+.gnum{display:flex;justify-content:space-between;font-size:.78rem;color:var(--mute);margin-top:.3rem}
+.gnum b{color:var(--bone)}
+.opp p{font-size:.92rem;color:#c6cde0}
+.chance{border-left:3px solid var(--gold);background:var(--gold-dim);border-radius:.5rem;padding:.8rem .9rem;font-size:.9rem}
+.chance b{font-family:var(--disp);letter-spacing:.18em;font-size:.75rem;color:var(--gold);display:block;margin-bottom:.3rem}
+.met{margin-top:1.1rem}
+.met .lbl{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;font-size:.92rem}
+.met .lbl b{font-family:var(--disp);font-weight:900;font-size:1.5rem;color:var(--gold)}
+.met .track{height:.55rem;border-radius:99px;background:rgba(255,255,255,.07);margin-top:.45rem;overflow:hidden}
+.met .fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.funcard{background:var(--panel);border:1px solid var(--line);border-radius:1.1rem;padding:1.2rem 1.4rem}
+.funcard b{font-family:var(--disp);letter-spacing:.18em;font-size:.75rem;color:var(--gold);display:block;margin-bottom:.35rem;text-transform:uppercase}
+.csvlink{color:var(--gold-soft);text-decoration:underline;text-underline-offset:3px}
+.krow{display:flex;align-items:center;gap:.6rem;padding:.45rem 0;border-bottom:1px solid var(--line);font-size:.88rem}
+.krow:last-child{border-bottom:0}
+.krow .dot{width:.55rem;height:.55rem;border-radius:50%;flex:none;background:rgba(244,241,232,.25)}
+.krow .dot.S{background:var(--green)}.krow .dot.J{background:var(--amber)}.krow .dot.T{background:var(--red)}
+.krow .kd{color:var(--mute);font-size:.75rem;min-width:4.4rem}
+.krow .ks{font-family:var(--disp);font-weight:900;font-size:1.05rem;min-width:2.6rem;text-align:center;font-variant-numeric:tabular-nums}
+.krow .ko{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.krec{color:var(--mute);font-size:.8rem;margin-top:.1rem}
+/* púls — low-key & töff: hófstillt umgjörð, hárlínu-skil, fínar línur */
+.pulswrap{margin-top:.2rem}
+.pulswrap>p{max-width:46rem;font-size:.95rem;color:var(--mute);margin-bottom:1.2rem}
+.pcard{padding:1rem 0;border-top:1px solid rgba(244,241,232,.06)}
+.pcard:first-of-type{border-top:0;padding-top:.2rem}
+.pcard .phead{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.pcard .phead b{font-family:var(--body);font-weight:600;font-size:.96rem;letter-spacing:.01em;color:var(--bone);opacity:.9}
+.pcard .pmax{font-size:.74rem;color:var(--mute);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.pcard .pmax b{color:var(--gold-soft);font-size:.82rem;font-weight:600;opacity:.9}
+.pcard svg{width:100%;height:3.3rem;display:block;margin-top:.45rem;overflow:visible}
+.pwait{color:var(--mute);font-size:.9rem;font-style:italic;margin-top:.9rem}
+/* liðsmynd + myndaræma */
+.teamphoto{margin:0 0 1.4rem;border-radius:1.2rem;overflow:hidden;border:1px solid rgba(242,183,5,.35);position:relative;box-shadow:0 24px 60px -24px rgba(0,0,0,.8)}
+.teamphoto img{display:block;width:100%;max-height:30rem;object-fit:cover;object-position:50% 22%}
+@media(min-width:1100px){.teamphoto img{max-height:38rem}}
+.teamphoto figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem 1.2rem .8rem;background:linear-gradient(transparent,rgba(7,13,28,.85));font-family:var(--disp);font-weight:700;letter-spacing:.18em;font-size:.8rem;color:var(--gold);text-transform:uppercase}
+.strip{display:flex;gap:.7rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem;margin-bottom:1rem;-webkit-overflow-scrolling:touch}
+.strip::-webkit-scrollbar{height:.4rem}
+.strip::-webkit-scrollbar-thumb{background:rgba(242,183,5,.35);border-radius:99px}
+.strip::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:99px}
+.strip a{flex:0 0 auto;width:min(80vw,24rem);scroll-snap-align:start;border-radius:1rem;overflow:hidden;border:1px solid var(--line);position:relative;display:block;transition:border-color .2s}
+.strip a:hover{border-color:rgba(242,183,5,.45)}
+.strip img{display:block;width:100%;height:15rem;object-fit:cover}
+.strip span{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .9rem .65rem;background:linear-gradient(transparent,rgba(7,13,28,.88));font-size:.85rem;color:var(--bone)}
+@media(min-width:900px){
+  .strip{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;overflow:visible;scroll-snap-type:none;padding-bottom:0}
+  .strip a{width:auto}
+  .strip img{height:21rem}
+}
+.reslist{font-size:.8rem;color:var(--mute);display:flex;flex-wrap:wrap;gap:.4rem}
+.reslist span{border:1px solid var(--line);border-radius:99px;padding:.15rem .6rem}
+
+/* gameplan */
+.plan{background:linear-gradient(150deg,#13204a,var(--panel));border:1px solid rgba(242,183,5,.25);border-radius:1.2rem;padding:clamp(1.4rem,4vw,2.2rem);position:relative;overflow:hidden}
+.plan::before{content:"⚽";position:absolute;right:-1rem;bottom:-2rem;font-size:9rem;opacity:.05;transform:rotate(-12deg)}
+.plan h2{font-family:var(--disp);font-weight:900;letter-spacing:.06em;font-size:1.5rem;color:var(--gold);text-transform:uppercase;margin-bottom:.6rem}
+.plan p{max-width:46rem;font-size:1.02rem}
+
+/* table */
+.twrap{overflow-x:auto;border-radius:1rem}
+table{width:100%;min-width:34rem;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:1rem;overflow:hidden}
+caption{caption-side:bottom;color:var(--mute);font-size:.8rem;padding-top:.7rem;text-align:left;font-style:italic}
+th,td{padding:.85rem 1rem;text-align:center;font-variant-numeric:tabular-nums}
+th{font-family:var(--disp);font-weight:700;letter-spacing:.16em;font-size:.72rem;color:var(--mute);text-transform:uppercase;border-bottom:1px solid var(--line)}
+td:first-child,th:first-child{text-align:left}
+tbody tr{border-bottom:1px solid var(--line)}
+tbody tr:last-child{border-bottom:0}
+tbody tr.ka{background:var(--gold-dim)}
+tbody tr.ka td:first-child{color:var(--gold-soft);font-weight:600}
+td.pts{font-family:var(--disp);font-weight:900;font-size:1.2rem}
+@media(max-width:560px){
+  table{min-width:0}
+  th,td{padding:.65rem .3rem;font-size:.78rem}
+  td:first-child{max-width:6.5rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  td.pts{font-size:1.05rem}
+}
+
+/* photos + video */
+.cta{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;background:var(--panel);border:1px solid var(--line);border-radius:1.2rem;padding:clamp(1.4rem,4vw,2.2rem)}
+.cta p{color:#c6cde0;max-width:42rem}
+.btn{display:inline-block;padding:1rem 2.2rem;border-radius:.8rem;background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#1a1402;font-family:var(--disp);font-weight:900;font-size:1.2rem;letter-spacing:.16em;text-decoration:none;box-shadow:0 12px 32px -14px rgba(242,183,5,.6);transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.soon{font-family:var(--disp);font-weight:700;letter-spacing:.2em;color:var(--mute);border:1px dashed rgba(244,241,232,.25);border-radius:.8rem;padding:1rem 2rem;font-size:1rem}
+.theater{background:#05080f;border:1px solid var(--line);border-radius:1.2rem;aspect-ratio:16/9;display:grid;place-items:center;position:relative;overflow:hidden}
+.theater::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.012) 3px 4px)}
+.theater .ph{text-align:center;padding:1rem}
+.theater .ph b{font-family:var(--disp);font-weight:900;font-size:clamp(1.6rem,5vw,2.6rem);letter-spacing:.1em;display:block;color:var(--bone);opacity:.85}
+.theater .ph span{color:var(--mute);font-size:.9rem}
+.theater video,.theater iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* efsta CTA — myndir + myndband */
+.topcta{display:flex;gap:.7rem;flex-wrap:wrap;margin:1.2rem 0 0}
+.ctabtn{flex:1 1 14rem;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:1.05rem 1.2rem;border-radius:.9rem;font-family:var(--disp);font-weight:900;letter-spacing:.1em;font-size:1.05rem;text-decoration:none;cursor:pointer;border:0;transition:transform .12s,box-shadow .2s;text-align:center}
+.ctabtn.photos{background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#1a1402;box-shadow:0 12px 30px -14px rgba(242,183,5,.6)}
+.ctabtn.video{background:rgba(255,255,255,.05);color:var(--bone);border:1px solid rgba(244,241,232,.22)}
+.ctabtn.book{background:linear-gradient(180deg,rgba(242,183,5,.18),rgba(242,183,5,.06));color:var(--gold-soft);border:1px solid rgba(242,183,5,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.ctabtn:active{transform:scale(.98)}
+.ctabtn.photos:hover,.ctabtn.video:hover,.ctabtn.book:hover{transform:translateY(-1px)}
+.upstat{flex:1 1 100%;margin-top:.3rem;background:var(--panel);border:1px solid var(--line);border-radius:.8rem;padding:.85rem 1rem}
+.upbar{height:.5rem;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin-bottom:.5rem}
+.upbar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));transition:width .25s}
+.upmsg{font-size:.88rem;color:#c6cde0}
+.upmsg.ok{color:var(--green)}.upmsg.err{color:#e0807e}
+/* kveðju-blokk */
+.kvedjur{display:grid;gap:1rem;margin-top:1rem}
+@media(min-width:760px){.kvedjur{grid-template-columns:1fr 1fr}}
+.kv{background:linear-gradient(155deg,#13204a,var(--panel));border:1px solid rgba(242,183,5,.25);border-radius:1.1rem;padding:clamp(1.3rem,4vw,1.8rem);position:relative;overflow:hidden}
+.kv.pabbi{border-color:rgba(224,82,79,.3);background:linear-gradient(155deg,#2a1530,var(--panel))}
+.kv .lbl{font-family:var(--disp);font-weight:700;letter-spacing:.24em;font-size:.78rem;color:var(--gold);text-transform:uppercase;margin-bottom:.6rem}
+.kv.pabbi .lbl{color:#ffb3b0}
+.kv p{font-size:1rem;line-height:1.6;color:#e7ebf5}
+.kv .sign{margin-top:.9rem;font-family:var(--disp);font-weight:700;letter-spacing:.08em;color:var(--mute);font-size:.85rem}
+/* mótsuppgjör — hetjuborð */
+.wraprec{display:flex;gap:clamp(.5rem,2vw,1rem);margin-top:1.5rem;flex-wrap:wrap}
+.wraprec div{flex:1;min-width:4.5rem;text-align:center;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:.8rem;padding:.7rem .4rem}
+.wraprec b{font-family:var(--disp);font-weight:900;font-size:clamp(1.8rem,6vw,2.8rem);line-height:1;display:block;font-variant-numeric:tabular-nums}
+.wraprec span{font-size:.66rem;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
+/* takk-blokk */
+.takk{background:linear-gradient(155deg,#16291d,var(--panel));border:1px solid rgba(242,183,5,.32);border-radius:1.2rem;padding:clamp(1.5rem,5vw,2.4rem);text-align:center}
+.takk h2{font-family:var(--disp);font-weight:900;font-size:clamp(1.7rem,6vw,2.5rem);letter-spacing:.03em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+.takk p{font-size:clamp(1rem,2.6vw,1.15rem);line-height:1.65;max-width:44rem;margin:0 auto;color:#eef1f7}
+/* leikja-tímalína */
+.daygroup{margin-bottom:1.7rem}
+.daygroup .dh{font-family:var(--disp);font-weight:700;letter-spacing:.2em;font-size:.86rem;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap}
+.daygroup .dh em{font-style:normal;color:var(--mute);letter-spacing:.08em;font-size:.76rem}
+.daygroup .dh a{margin-left:auto;font-size:.72rem;letter-spacing:.06em;color:var(--gold-soft);text-decoration:none;border:1px solid rgba(242,183,5,.35);border-radius:.6rem;padding:.3rem .7rem}
+.gcard{background:var(--panel);border:1px solid var(--line);border-radius:1rem;padding:1.15rem 1.3rem;margin-bottom:.7rem;border-left:3px solid var(--mute)}
+.gcard.win{border-left-color:var(--green)}
+.gcard.loss{border-left-color:var(--red)}
+.gcard.star{background:linear-gradient(160deg,var(--gold-dim),var(--panel) 60%);border-color:rgba(242,183,5,.4)}
+.gcard .gh{display:flex;align-items:center;gap:.8rem;margin-bottom:.4rem;flex-wrap:wrap}
+.gcard .sc{font-family:var(--disp);font-weight:900;font-size:1.45rem;font-variant-numeric:tabular-nums;padding:.05rem .55rem;border-radius:.5rem;background:rgba(255,255,255,.06)}
+.gcard.win .sc{color:#08101f;background:var(--green)}
+.gcard.loss .sc{color:#fff;background:rgba(224,82,79,.85)}
+.gcard .opp2{font-weight:600;font-size:1.05rem;line-height:1.15}
+.gcard .opp2 em{font-style:normal;color:var(--mute);font-size:.8rem;display:block;margin-top:.1rem}
+.gcard p{font-size:.95rem;line-height:1.55;color:#c6cde0;margin-top:.2rem}
+/* neðri leiðsögn — phone-first, gler-pilla */
+.bnav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(.9rem + env(safe-area-inset-bottom));z-index:50;display:flex;gap:.25rem;padding:.4rem;border-radius:1.2rem;background:rgba(10,18,40,.78);-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);border:1px solid rgba(244,241,232,.14);box-shadow:0 18px 50px -18px rgba(0,0,0,.85)}
+.bnav a{display:flex;flex-direction:column;align-items:center;gap:.18rem;min-width:4.3rem;padding:.5rem .55rem .45rem;border-radius:.9rem;text-decoration:none;color:var(--mute);transition:color .18s,background .18s}
+.bnav a svg{width:1.35rem;height:1.35rem;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bnav a span{font-family:var(--disp);font-weight:700;letter-spacing:.12em;font-size:.62rem;text-transform:uppercase}
+.bnav a.on{color:#1a1402;background:linear-gradient(180deg,var(--gold-soft),var(--gold))}
+.bnav a:active{transform:scale(.96)}
+@media(min-width:700px){.bnav a{flex-direction:row;gap:.45rem;min-width:0;padding:.55rem .95rem}.bnav a span{font-size:.72rem}}
+footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between;color:var(--mute);font-size:.82rem}
+footer b{font-family:var(--disp);letter-spacing:.2em;color:var(--gold);font-weight:700}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* ── Liquid Glass lag — heildarsvipur við minningabók-PDF ── */
+.next,.cta{
+  background:linear-gradient(160deg,rgba(14,24,54,.62),rgba(10,18,43,.46));
+  -webkit-backdrop-filter:blur(22px) saturate(1.3);backdrop-filter:blur(22px) saturate(1.3);
+  border:1px solid rgba(244,241,232,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 24px 64px -30px rgba(0,0,0,.82)}
+.match,.stat,.opp,.funcard,.gcard,.upstat,table,.pcard .pinner{
+  background:linear-gradient(165deg,rgba(16,26,58,.55),rgba(11,20,46,.4));
+  -webkit-backdrop-filter:blur(16px) saturate(1.22);backdrop-filter:blur(16px) saturate(1.22);
+  border:1px solid rgba(244,241,232,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 16px 44px -26px rgba(0,0,0,.72)}
+.stat:hover,.match:hover,.opp:hover,.gcard:hover{
+  border-color:rgba(242,183,5,.34);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 20px 52px -24px rgba(242,183,5,.20)}
+
+/* Um síðuna */
+.about{max-width:52rem}
+.about .alead{font-size:1.12rem;line-height:1.6;color:var(--bone);margin-bottom:1rem}
+.about .amid{color:var(--mute);margin-bottom:.7rem}
+.arch{list-style:none;display:grid;gap:.85rem;margin:0 0 1.2rem}
+.arch li{position:relative;padding-left:1.5rem;line-height:1.55;color:#c6cde0;font-size:.98rem}
+.arch li::before{content:"";position:absolute;left:.15rem;top:.5rem;width:.5rem;height:.5rem;border-radius:50%;background:var(--gold);box-shadow:0 0 10px -1px rgba(242,183,5,.6)}
+.arch li b{color:var(--bone)}
+.about .anote{color:var(--mute);font-style:italic;border-left:2px solid rgba(242,183,5,.4);padding-left:1rem;margin-bottom:1.3rem;line-height:1.55}
+.about .aby{font-family:var(--disp);font-weight:700;letter-spacing:.04em;color:var(--bone)}
+.about .aby a{color:var(--gold-soft);text-decoration:none;border-bottom:1px solid rgba(255,217,94,.4)}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="brand">
+    <svg viewBox="0 0 84 96" fill="none" aria-hidden="true">
+      <path d="M42 3 79 14v36c0 22-16 36-37 43C21 86 5 72 5 50V14L42 3Z" stroke="#f2b705" stroke-width="3.5" fill="rgba(242,183,5,.07)"/>
+      <text x="42" y="49" text-anchor="middle" font-family="Big Shoulders Display" font-weight="900" font-size="30" fill="#f4f1e8">KA</text>
+      <text x="42" y="74" text-anchor="middle" font-family="Big Shoulders Display" font-weight="700" font-size="17" fill="#f2b705">·2·</text>
+    </svg>
+    <div><b>KA-2</b><span>Eyjamótið 2026 · Vestmannaeyjar</span></div>
+  </div>
+  <div class="chip" id="gchip">RIÐILL C10</div>
+</header>
+
+<div class="hero">
+  <figure class="teamphoto" id="teamphoto" style="display:none">
+    <img id="tpimg" alt="Liðsmynd KA-2 á Eyjamótinu" loading="eager">
+    <figcaption id="tpcap"></figcaption>
+  </figure>
+  <div class="dayline" id="dayline">Dagur 1 · Þrír leikir, þrír sigrar <em>· markatala 9–2</em></div>
+  <div class="next" id="hero"></div>
+  <div class="plan" id="saga" style="display:none;margin-top:1rem">
+    <h2 id="sagaTitle" style="font-size:1.3rem"></h2>
+    <p id="sagaText"></p>
+    <p id="sagaHype" style="margin-top:.8rem;font-family:var(--disp);font-weight:700;letter-spacing:.06em;color:var(--gold);font-size:1.15rem"></p>
+  </div>
+
+  <div class="topcta">
+    <a class="ctabtn photos" id="ctaPhotos" target="_blank" rel="noopener noreferrer">📷 Skoða &amp; bæta við myndum</a>
+    <a class="ctabtn book" id="ctaPdf" target="_blank" rel="noopener noreferrer">📖 Sækja minningabók</a>
+    <button class="ctabtn video" id="ctaVideo" type="button">🎬 Hlaða upp myndbandi</button>
+    <input type="file" id="vidInput" accept="video/*" hidden>
+    <div class="upstat" id="upstat" hidden>
+      <div class="upbar"><i id="upbarfill"></i></div>
+      <div class="upmsg" id="upmsg"></div>
+    </div>
+  </div>
+
+  <div class="kvedjur">
+    <div class="kv" id="kvTeam" style="display:none">
+      <div class="lbl">Kveðja á hópinn</div>
+      <p id="kvTeamText"></p>
+      <div class="sign">— Áfram KA-2!</div>
+    </div>
+    <div class="kv pabbi" id="kvPabbi" style="display:none">
+      <div class="lbl" id="kvPabbiLbl">Þvílíkur liðsandi</div>
+      <p id="kvPabbiText"></p>
+      <div class="sign" id="kvPabbiSign"></div>
+    </div>
+  </div>
+</div>
+
+<section id="takk" class="reveal" style="display:none">
+  <div class="takk">
+    <h2 id="takkH"></h2>
+    <p id="takkP"></p>
+  </div>
+</section>
+
+<section id="dagskra">
+  <div class="sechead"><h2 id="dagskraH">Dagskrá dagsins</h2></div>
+  <div id="matches"></div>
+</section>
+
+<section class="reveal">
+  <div class="sechead"><h2>KA-2 í tölum</h2></div>
+  <div class="band">
+    <div class="stat"><b id="k_w" data-n="0">0</b><span>Sigrar</span></div>
+    <div class="stat"><b id="k_l" data-n="0">0</b><span>Töp</span></div>
+    <div class="stat"><b id="k_gf" data-n="0">0</b><span>Mörk skoruð</span></div>
+    <div class="stat"><b id="k_ga" data-n="0">0</b><span>Mörk fengin</span></div>
+  </div>
+  <p class="bandnote" id="kpicap">Tölur berast úr opinbera mótakerfinu.</p>
+</section>
+
+<section class="reveal" id="puls">
+  <div class="sechead"><h2>Hversu spenntur er Magnús?</h2></div>
+  <div class="pulswrap">
+    <p>Púls pabbans á hliðarlínunni — mældur með Garmin-úri, 10 mínútur fyrir leik og 10 mínútur eftir. Úrið lýgur ekki.</p>
+    <div id="pulscards"></div>
+  </div>
+</section>
+
+<section class="reveal" id="dossSec">
+  <div class="sechead"><h2>Andstæðingarnir</h2></div>
+  <div class="doss" id="doss"></div>
+</section>
+
+<section class="reveal" id="planSec">
+  <div class="plan">
+    <h2>Leikplanið</h2>
+    <p id="plan"></p>
+  </div>
+</section>
+
+<section class="reveal" id="tafla">
+  <div class="sechead"><h2 id="tablah">Staðan í riðlinum</h2></div>
+  <div class="twrap"><table>
+    <thead><tr><th>Lið</th><th>L</th><th>S</th><th>J</th><th>T</th><th>Mörk</th><th>+/−</th><th>Stig</th></tr></thead>
+    <tbody id="tbody"></tbody>
+  </table></div>
+  <p class="bandnote" id="tcap"></p>
+</section>
+
+<section class="reveal" id="greining" style="display:none">
+  <div class="sechead"><h2>Gagnagreining mótsins</h2></div>
+  <div class="band" id="gband"></div>
+  <div class="plan" style="margin-top:.9rem">
+    <h2 style="font-size:1.3rem">KA-2 í samhengi alls mótsins</h2>
+    <div id="gka"></div>
+  </div>
+  <div class="doss" id="gfun" style="margin-top:.9rem"></div>
+  <p class="bandnote" id="gcap"></p>
+</section>
+
+<section class="reveal" id="kalid" style="display:none">
+  <div class="sechead"><h2>KA-liðin í Eyjum</h2></div>
+  <div class="doss" id="kafam"></div>
+  <p class="bandnote">KA-liðin fjögur á mótinu — allir leikir úr opinbera mótakerfinu, uppfært sjálfkrafa.</p>
+</section>
+
+<section class="reveal" id="myndir">
+  <div class="sechead"><h2>Myndaalbúmið</h2></div>
+  <div class="cta" id="album"></div>
+</section>
+
+<section class="reveal" id="myndband">
+  <div class="sechead"><h2>Mótsmyndin</h2></div>
+  <div class="theater" id="theater"></div>
+</section>
+
+<section class="reveal" id="um">
+  <div class="sechead"><h2>Um síðuna</h2></div>
+  <div class="about">
+    <p class="alead">Hugmyndin að þessari síðu kviknaði á <b>fyrsta degi mótsins</b> — og varð að lítilli tilraun sem þróaðist alla helgina. Langstærstur hluti hennar er <b>sjálfvirkur</b> og byggir á kerfi sem ég hef þróað undanfarið ár.</p>
+    <p class="amid">Þannig virkar hún, í grófum dráttum:</p>
+    <ul class="arch">
+      <li><b>Vöktun úrslita.</b> Erindrekar knúnir stórum mállíkönum, ásamt Python-kóða sem keyrir með reglulegu millibili, vakta úrslitasíðu TM-mótsins og draga ný úrslit inn jafnóðum.</li>
+      <li><b>Myndir.</b> Opið, deilt myndaalbúm sem kerfið hefur aðgang að — það kannar reglulega hvort nýtt efni sé komið inn.</li>
+      <li><b>Myndgreining á eigin vélbúnaði.</b> Gemma&nbsp;3 (12 milljarða breytur) — stórt mállíkan sem keyrir <b>algerlega á mínum eigin vélbúnaði</b> — „skoðar" hverja mynd, skrifar lýsigögn um hana og raðar henni inn. Ekkert af myndunum fer til þriðja aðila.</li>
+      <li><b>Minningabók.</b> Loks er hugmyndin að steypa öllu saman í prentanlega minningabók sem PDF — sögu liðsins yfir mótið.</li>
+    </ul>
+    <p class="anote">Þetta er <b>fyrsta tilraunin</b> mín af þessu tagi — unnin í rauntíma yfir eina mótshelgi. Hún er hvorki fullkomin né fullkláruð, en hún sýnir hvert kerfið stefnir.</p>
+    <p class="aby">— Magnús Smári Smárason &nbsp;·&nbsp; <a href="https://www.smarason.is" target="_blank" rel="noopener">www.smarason.is</a></p>
+  </div>
+</section>
+
+<footer>
+  <div>Síðast uppfært <span id="upd"></span> · úrslit úr opinbera mótakerfinu (tmmotid.is)</div>
+  <div><b>ÁFRAM KA!</b></div>
+</footer>
+</main>
+
+<nav class="bnav" aria-label="Flýtileiðir">
+  <a href="#dagskra" data-spy="dagskra"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg><span>Leikir</span></a>
+  <a href="#tafla" data-spy="tafla"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M5 4h14v4a7 7 0 0 1-14 0V4Z"/><path d="M5 6H3v2a3 3 0 0 0 3 3M19 6h2v2a3 3 0 0 1-3 3"/></svg><span>Staðan</span></a>
+  <a href="#myndir" data-spy="myndir"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7l1.5-2.5h3L15 7"/><circle cx="12" cy="13" r="3.5"/></svg><span>Myndir</span></a>
+  <a href="#myndband" data-spy="myndband"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5L10 9.5Z"/></svg><span>Myndband</span></a>
+  <a href="#um" data-spy="um"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Um</span></a>
+</nav>
+
+<script>
+const D = /*__DATA__*/null;
+const $ = (s)=>document.querySelector(s);
+// Ísland = UTC allt árið — formum handvirkt svo íslenskan haldi á öllum tækjum
+const MAN = ["janúar","febrúar","mars","apríl","maí","júní","júlí","ágúst","september","október","nóvember","desember"];
+const p2 = (n)=>String(n).padStart(2,"0");
+const fmtT = (iso)=>{const d=new Date(iso);return `${p2(d.getUTCHours())}:${p2(d.getUTCMinutes())}`;};
+const fmtD = (iso)=>{const d=new Date(iso);return `${d.getUTCDate()}. ${MAN[d.getUTCMonth()]} kl. ${fmtT(iso)}`;};
+const MATCH_MIN = 45; // leikur telst "í gangi" í 45 mín frá upphafi
+
+// ---- staða leikja ----
+const now = ()=>Date.now();
+const stateOf = (m)=>{
+  if (m.result) return "done";
+  const k = new Date(m.kickoff).getTime();
+  if (now() >= k && now() < k + MATCH_MIN*6e4) return "live";
+  return now() < k ? "soon" : "await"; // await = búinn en úrslit óskráð
+};
+const nextMatch = ()=>D.matches.find(m=>["soon","live"].includes(stateOf(m)));
+
+// ---- hetjuborðið ----
+function hero(){
+  const el = $("#hero");
+  if (D.finished && D.wrapup){
+    const r = D.wrapup.record;
+    el.innerHTML = `<div class="eyebrow">${D.wrapup.sub||""}</div>
+      <h1>${D.wrapup.headline||"Mótinu lokið"}</h1>
+      <p class="meta">${D.wrapup.summary||""}</p>
+      <div class="wraprec">
+        <div><b>${r.games}</b><span>Leikir</span></div>
+        <div><b>${r.w}</b><span>Sigrar</span></div>
+        <div><b>${r.gf}–${r.ga}</b><span>Markatala</span></div>
+      </div>`;
+    return;
+  }
+  const m = nextMatch();
+  if (!m){
+    el.innerHTML = `<div class="eyebrow">Dagskrá dagsins lokið</div>
+      <h1>Vel gert, <span style="color:var(--gold)">KA-2</span></h1>
+      <p class="meta">Úrslitin birtast hér um leið og þau eru staðfest. Takk fyrir daginn — áfram KA!</p>`;
+    return;
+  }
+  const live = stateOf(m)==="live";
+  const opp = m.home==="KA-2" ? m.away : m.home;
+  const order = m.home==="KA-2" ? `KA-2 <span class="vs">vs</span> ${opp}` : `${opp} <span class="vs">vs</span> KA-2`;
+  el.innerHTML = `<div class="eyebrow">${live?"Leikurinn er hafinn":"Næsti leikur"}</div>
+    <h1>${order}</h1>
+    <p class="meta"><b>kl. ${fmtT(m.kickoff)}</b> · ${m.venue} · Vestmannaeyjum</p>
+    ${live
+      ? `<div class="livepill"><i></i> Í GANGI NÚNA — ÁFRAM KA!</div>`
+      : `<div class="count" role="timer">
+           <div><b id="ch">–</b><span>klst</span></div>
+           <div><b id="cm">–</b><span>mín</span></div>
+           <div><b id="cs">–</b><span>sek</span></div>
+         </div>`}`;
+  if (!live){
+    const tick = ()=>{
+      let s = Math.max(0, Math.floor((new Date(m.kickoff).getTime()-now())/1000));
+      $("#ch").textContent = String(Math.floor(s/3600)).padStart(2,"0");
+      $("#cm").textContent = String(Math.floor(s%3600/60)).padStart(2,"0");
+      $("#cs").textContent = String(s%60).padStart(2,"0");
+      if (s===0){ clearInterval(iv); setTimeout(hero, 1200); }
+    };
+    tick(); const iv = setInterval(tick, 1000);
+  } else {
+    setTimeout(hero, 60e3); // endurmeta eftir mínútu
+  }
+}
+
+// ---- riðill + dagslína ----
+document.getElementById("gchip").textContent = "RIÐILL " + D.group;
+document.getElementById("tablah").textContent = "Staðan í " + D.group;
+if (D.dayline) document.getElementById("dayline").innerHTML = D.dayline;
+
+// ---- liðsmynd + myndaræma ----
+if (D.team_photo){
+  document.getElementById("teamphoto").style.display = "";
+  document.getElementById("tpimg").src = D.team_photo.src;
+  document.getElementById("tpcap").textContent = D.team_photo.caption || "";
+}
+if (D.gallery && D.gallery.length){
+  const strip = document.createElement("div");
+  strip.className = "strip";
+  strip.innerHTML = D.gallery.map(g=>
+    `<a href="${g.src}" target="_blank" rel="noopener"><img src="${g.src}" alt="${g.cap||"Mynd frá mótinu"}" loading="lazy"><span>${g.cap||""}</span></a>`).join("");
+  const album = document.getElementById("album");
+  album.parentNode.insertBefore(strip, album);
+}
+
+// ---- saga dagsins (falin í uppgjörsham) ----
+if (D.story && !D.finished){
+  document.getElementById("saga").style.display = "";
+  document.getElementById("sagaTitle").textContent = D.story.eyebrow;
+  document.getElementById("sagaText").textContent = D.story.text;
+  document.getElementById("sagaHype").textContent = D.story.hype || "";
+}
+
+// ---- kveðjur ----
+if (D.kvedja && D.kvedja.team){
+  document.getElementById("kvTeam").style.display = "";
+  document.getElementById("kvTeamText").textContent = D.kvedja.team;
+}
+if (D.kvedja && D.kvedja.pabbi){
+  document.getElementById("kvPabbi").style.display = "";
+  if (D.kvedja.pabbi_label) document.getElementById("kvPabbiLbl").textContent = D.kvedja.pabbi_label;
+  document.getElementById("kvPabbiText").textContent = D.kvedja.pabbi;
+  document.getElementById("kvPabbiSign").textContent = D.kvedja.pabbi_sign || "";
+}
+
+// ---- efsta CTA: myndir + myndband ----
+(function(){
+  const cp = document.getElementById("ctaPhotos");
+  if (D.album_url) cp.href = D.album_url;
+  else { cp.removeAttribute("href"); cp.style.opacity=".55"; cp.textContent="📷 Albúmið opnar fljótlega"; }
+  const pdf = document.getElementById("ctaPdf");
+  if (D.pdf_url) pdf.href = D.pdf_url;
+  else { pdf.removeAttribute("href"); pdf.style.opacity=".55"; pdf.textContent="📖 Minningabók opnar fljótlega"; }
+  const vi = document.getElementById("vidInput"), stat = document.getElementById("upstat"),
+        fill = document.getElementById("upbarfill"), msg = document.getElementById("upmsg");
+  document.getElementById("ctaVideo").addEventListener("click", ()=>vi.click());
+  vi.addEventListener("change", ()=>{
+    const f = vi.files[0]; if(!f) return;
+    stat.hidden = false; fill.style.width="0%"; msg.className="upmsg";
+    msg.textContent = `Hleð upp „${f.name}“ …`;
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/upload?name="+encodeURIComponent(f.name));
+    xhr.upload.onprogress = (e)=>{ if(e.lengthComputable){ const p=Math.round(e.loaded/e.total*100);
+      fill.style.width=p+"%"; msg.textContent=`Hleð upp … ${p}%`; } };
+    xhr.onload = ()=>{
+      if(xhr.status===200){ fill.style.width="100%"; msg.className="upmsg ok";
+        msg.textContent="✓ Takk! Myndbandið er komið til skila — það birtist í samklippunni síðar."; }
+      else { let m="Eitthvað fór úrskeiðis."; try{m=JSON.parse(xhr.responseText).msg||m;}catch{}
+        msg.className="upmsg err"; msg.textContent="✗ "+m; }
+      vi.value="";
+    };
+    xhr.onerror = ()=>{ msg.className="upmsg err"; msg.textContent="✗ Netvilla — reyndu aftur."; vi.value=""; };
+    xhr.send(f);
+  });
+})();
+
+// ---- dagskrá ----
+function schedule(){
+  $("#matches").innerHTML = D.matches.map(m=>{
+    const st = stateOf(m);
+    let chip = `<span class="st">Í DAG</span>`;
+    if (st==="live") chip = `<span class="st live">Í GANGI</span>`;
+    else if (st==="done") chip = `<span class="st done score">${m.result.home}–${m.result.away}</span>`;
+    else if (st==="await") chip = `<span class="st">ÚRSLIT Á LEIÐINNI</span>`;
+    else if (nextMatch()===m) chip = `<span class="st next">NÆSTI LEIKUR</span>`;
+    return `<div class="match">
+      <div class="t">${m.tbd_time ? "—" : fmtT(m.kickoff)}</div>
+      <div class="who"><b>${m.home} – ${m.away}</b><span>${m.venue} · Vestmannaeyjum</span></div>
+      ${chip}</div>`;
+  }).join("");
+}
+
+// ---- andstæðingar ----
+$("#doss").innerHTML = D.opponents.map(o=>{
+  const tot = o.record.gf + o.record.ga || 1;
+  return `<article class="opp">
+    <div class="top"><div><h3>${o.name}</h3><div class="when">${o.match}</div></div>
+      <div class="form">${o.form.map(f=>`<i class="${f}">${f}</i>`).join("")}</div></div>
+    <div><div class="gbar"><i style="width:${Math.round(o.record.gf/tot*100)}%"></i></div>
+      <div class="gnum"><span>Skoruð <b>${o.record.gf}</b></span><span>Fengin <b>${o.record.ga}</b></span></div></div>
+    <div class="reslist">${o.results.map(r=>`<span>${r}</span>`).join("")}</div>
+    <p>${o.read}</p>
+    <div class="chance"><b>SÉNSINN</b>${o.chance}</div>
+  </article>`;
+}).join("");
+$("#plan").textContent = D.gameplan;
+
+// ---- staðan í riðlinum ----
+function table(){
+  const T = Object.fromEntries(D.teams.map(t=>[t,{p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0}]));
+  for (const g of D.groupResults){
+    const h=T[g.home], a=T[g.away]; if(!h||!a) continue;
+    h.p++; a.p++; h.gf+=g.hs; h.ga+=g.as; a.gf+=g.as; a.ga+=g.hs;
+    if (g.hs>g.as){h.w++;h.pts+=3;a.l++;}
+    else if (g.hs<g.as){a.w++;a.pts+=3;h.l++;}
+    else {h.d++;a.d++;h.pts++;a.pts++;}
+  }
+  const rows = D.teams.map(t=>({t,...T[t]}))
+    .sort((x,y)=>y.pts-x.pts||(y.gf-y.ga)-(x.gf-x.ga)||y.gf-x.gf||x.t.localeCompare(y.t,"is"));
+  $("#tbody").innerHTML = rows.map(r=>`<tr class="${r.t==="KA-2"?"ka":""}">
+    <td>${r.t}</td><td>${r.p}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td>
+    <td>${r.gf}–${r.ga}</td><td>${r.gf-r.ga>0?"+":""}${r.gf-r.ga}</td><td class="pts">${r.pts}</td></tr>`).join("");
+  $("#tcap").textContent = D.groupResults.length
+    ? "Handfærð úrslit úr riðli " + D.group + "."
+    : "Taflan lifnar við þegar fyrstu úrslit dagsins eru staðfest.";
+}
+
+// ---- gagnagreining mótsins ----
+if (D.analysis){
+  const A = D.analysis;
+  document.getElementById("greining").style.display = "";
+  document.getElementById("gband").innerHTML = [
+    [A.played,"Leikir spilaðir"],[A.goals,"Mörk alls"],[A.avg,"Mörk í leik"],[A.teams,"Lið á mótinu"]
+  ].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+  if (A.ka2){
+    const k = A.ka2;
+    // KA-2 í tölum — SSOT: allt reiknað úr opinbera mótakerfinu
+    [["k_w",k.w],["k_l",k.l],["k_gf",k.gf],["k_ga",k.ga]].forEach(([id,n])=>{
+      const el=document.getElementById(id); if(el) el.dataset.n=n;
+    });
+    const cap=document.getElementById("kpicap");
+    if (cap) cap.textContent = `Samtals yfir mótið (${k.p} leikir${k.d?`, þar af ${k.d} jafntefli`:""}) — ${k.p-1} riðilsleikir úr opinbera mótakerfinu, úrslitaleikurinn um Mótsbikarinn handfærður.`;
+    const rows = [];
+    if (k.perfect) rows.push({txt:`Fullt hús — aðeins <b style="color:var(--gold)">${A.perfect_count}</b> lið af ${A.full_teams} hafa unnið alla leiki sína. KA-2 er eitt þeirra.`, n:`${k.w}/${k.p}`, pct:100});
+    rows.push({txt:`Vörnin: <b style="color:var(--gold)">${k.ga} mörk fengin</b> á mótinu — færri en hjá ${k.def_pct}% liða mótsins.`, n:k.ga, pct:k.def_pct});
+    rows.push({txt:`Sóknin: <b style="color:var(--gold)">${k.gf} mörk skoruð</b> — meðallið mótsins hefur skorað ${k.gf_avg_all}.`, n:k.gf, pct:Math.min(100,Math.round(k.gf/(k.gf_avg_all*2)*100))});
+    document.getElementById("gka").innerHTML = rows.map(r=>
+      `<div class="met"><div class="lbl"><span>${r.txt}</span><b>${r.n}</b></div>
+       <div class="track"><div class="fill" data-w="${r.pct}"></div></div></div>`).join("");
+  }
+  document.getElementById("gfun").innerHTML = A.fun.map(f=>
+    `<div class="funcard"><b>${f.label}</b>${f.value}</div>`).join("");
+  document.getElementById("gcap").innerHTML =
+    `${A.ka2&&A.ka2.p?`${A.ka2.p-1} riðilsleikir úr opinbera mótakerfinu (tmmotid.is) + handfærður úrslitaleikur`:`Úr opinbera mótakerfinu (tmmotid.is)`} · sótt ${fmtD(A.asof)} · <a class="csvlink" href="/urslit.csv" download>sækja öll úrslit (CSV)</a>`;
+  const gio = new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.w+"%");gio.unobserve(e.target);}
+  }),{threshold:.3});
+  gio.observe(document.getElementById("gka"));
+}
+
+// ---- Hversu spenntur er Magnús? ----
+(function(){
+  const P = D.pulse || {};
+  const byId = Object.fromEntries(D.matches.map(m=>[m.id, m.home==="KA-2"?m.away:m.home]));
+  const cards = Object.entries(P).map(([mid,p])=>{
+    const opp = p.label || byId[mid] || mid;
+    if (!p || !p.series || !p.series.length) return "";
+    const xs = p.series.map(s=>s[0]), ys = p.series.map(s=>s[1]);
+    const xmax = 60, ymin = Math.min(...ys)-8, ymax = Math.max(...ys)+8;
+    const X = (x)=> (x/xmax*300).toFixed(1), Y = (y)=> (80-(y-ymin)/(ymax-ymin)*80).toFixed(1);
+    const pts = p.series.map(s=>`${X(s[0])},${Y(s[1])}`).join(" ");
+    const peak = p.series.find(s=>s[1]===p.max);
+    return `<div class="pcard">
+      <div class="phead"><b>${opp}</b><span class="pmax">hám <b>${p.max}</b> · með ${p.avg}${p.complete?"":" · enn að mælast…"}</span></div>
+      <svg viewBox="0 0 300 80" preserveAspectRatio="none" role="img" aria-label="Púls í ${opp}-leiknum">
+        <defs><linearGradient id="pg${mid}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f2b705" stop-opacity=".15"/><stop offset="1" stop-color="#f2b705" stop-opacity="0"/></linearGradient></defs>
+        <polyline points="${pts} 300,80 0,80" fill="url(#pg${mid})" stroke="none"/>
+        <line x1="${X(10)}" y1="4" x2="${X(10)}" y2="76" stroke="rgba(244,241,232,.12)" stroke-dasharray="2 4"/>
+        <text x="${X(10)}" y="-3" fill="rgba(244,241,232,.30)" font-size="6.5" text-anchor="middle" font-family="Inter,sans-serif">leikbyrjun</text>
+        <polyline points="${pts}" fill="none" stroke="rgba(242,183,5,.82)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+        ${peak?`<circle cx="${X(peak[0])}" cy="${Y(peak[1])}" r="1.8" fill="#ffd95e"/>`:""}
+      </svg></div>`;
+  }).join("");
+  document.getElementById("pulscards").innerHTML = cards ||
+    `<p class="pwait">Úrið er á úlnliðnum og hjartað í buxunum — fyrsta mæling birtist eftir fyrsta leik (og Garmin-sync).</p>`;
+})();
+
+// ---- KA-liðin í Eyjum ----
+if (D.analysis && D.analysis.ka_family && D.analysis.ka_family.length){
+  document.getElementById("kalid").style.display = "";
+  document.getElementById("kafam").innerHTML = D.analysis.ka_family.map(t=>`
+    <article class="opp" ${t.name==="KA-2"?'style="border-color:rgba(242,183,5,.45);background:linear-gradient(160deg,rgba(242,183,5,.07),var(--panel) 55%)"':""}
+      <div class="top"><div><h3>${t.name}</h3>
+        <div class="krec">${t.rec.w} ${t.rec.w===1?"sigur":"sigrar"} · ${t.rec.d} jafntefli · ${t.rec.l} ${t.rec.l===1?"tap":"töp"} · mörk ${t.rec.gf}–${t.rec.ga}</div></div>
+        <div class="form">${t.matches.filter(m=>m.res).map(m=>`<i class="${m.res}">${m.res}</i>`).join("")}</div></div>
+      <div>${t.matches.map(m=>`
+        <div class="krow"><span class="dot ${m.res||""}"></span><span class="kd">${m.day} ${m.time}</span>
+          <span class="ks">${m.res?`${m.gf}–${m.ga}`:"–"}</span><span class="ko">${m.opp}</span></div>`).join("")}
+      </div>
+    </article>`).join("");
+}
+
+// ---- albúm + myndband ----
+$("#album").innerHTML = D.album_url
+  ? `<p>Sameiginlegt albúm hópsins — skoðaðu myndir dagsins og <b>bættu þínum við</b> beint úr símanum. Albúmið er bara fyrir fjölskyldur hópsins; deilum hlekknum ekki áfram.</p>
+     <a class="btn" href="${D.album_url}" target="_blank" rel="noopener noreferrer">OPNA ALBÚMIÐ</a>`
+  : `<p>Sameiginlegt Google Photos albúm hópsins — allir foreldrar geta skoðað og bætt við myndum dagsins.</p>
+     <span class="soon">ALBÚMIÐ OPNAR FLJÓTLEGA</span>`;
+
+const th = $("#theater");
+if (D.video_url){
+  const u = D.video_url;
+  th.innerHTML = /youtube\.com|youtu\.be|vimeo\.com/.test(u)
+    ? `<iframe src="${u}" allow="fullscreen" loading="lazy" title="Mótsmyndin"></iframe>`
+    : `<video controls preload="metadata" playsinline src="${u}"></video>`;
+} else {
+  th.innerHTML = `<div class="ph"><b>Í KLIPPIHERBERGINU</b><span>Samklippa mótsins birtist hér þegar henni er lokið.</span></div>`;
+}
+
+// ---- smáatriði ----
+$("#upd").textContent = fmtD(D.updated);
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+// scroll-spy fyrir neðri leiðsögn — myndband telur frá tafla-enda, annars sá efsti í mynd
+const navLinks = [...document.querySelectorAll(".bnav a")];
+const spyIds = ["dagskra","tafla","myndir","myndband","um"];
+const setOn = (id)=>navLinks.forEach(a=>a.classList.toggle("on", a.dataset.spy===id));
+const spy = ()=>{
+  const anchor = window.scrollY + innerHeight*0.28;
+  let cur = "dagskra";
+  for (const id of spyIds){
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top + window.scrollY <= anchor) cur = id;
+  }
+  setOn(cur);
+};
+addEventListener("scroll", spy, {passive:true}); spy();
+document.querySelector(".brand").style.cursor = "pointer";
+document.querySelector(".brand").addEventListener("click", ()=>window.scrollTo({top:0,behavior:"smooth"}));
+document.querySelectorAll(".stat b[data-n]").forEach(el=>{
+  const n=+el.dataset.n, t0=performance.now();
+  const step=(t)=>{const k=Math.min(1,(t-t0)/900);el.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step);};
+  requestAnimationFrame(step);
+});
+// ---- mótsuppgjör (þegar finished) ----
+function renderGames(){
+  document.getElementById("dagskraH").textContent = "Leikirnir tíu";
+  const dayMeta = {
+    "Fimmtudagur":"Eldurinn · riðill A14 · 3 sigrar",
+    "Föstudagur":"Eldskírnin · riðill B08 · gegn A-liðunum",
+    "Laugardagur":"Hjartað · riðill C10"
+  };
+  const alb = D.album_url || "";
+  const days = [];
+  D.games.forEach(g=>{ if(!days.includes(g.day)) days.push(g.day); });
+  document.getElementById("matches").innerHTML = days.map(day=>{
+    const cards = D.games.filter(g=>g.day===day).map(g=>{
+      const cls = (g.gf>g.ga?"win":g.gf<g.ga?"loss":"") + (g.star?" star":"");
+      return `<div class="gcard ${cls}">
+        <div class="gh"><span class="sc">${g.gf}–${g.ga}</span>
+          <span class="opp2">${g.opp}<em>${g.time} · ${g.venue}</em></span></div>
+        <p>${g.story}</p></div>`;
+    }).join("");
+    const link = alb ? `<a href="${alb}" target="_blank" rel="noopener">📷 Myndir frá deginum</a>` : "";
+    return `<div class="daygroup"><div class="dh">${day} <em>${dayMeta[day]||""}</em>${link}</div>${cards}</div>`;
+  }).join("");
+}
+if (D.finished){
+  if (D.wrapup){
+    document.getElementById("takk").style.display = "";
+    document.getElementById("takkH").textContent = "Takk fyrir mótið, stelpur";
+    document.getElementById("takkP").textContent = D.wrapup.thanks || "";
+    document.getElementById("dayline").innerHTML = "Eyjamótið 2026 · Vestmannaeyjar <em>· mótinu lokið</em>";
+    // mótið búið → fela fyrir-leiks prep (andstæðinga-njósnir + 1-dags leikplan)
+    const ds=document.getElementById("dossSec"), ps=document.getElementById("planSec");
+    if(ds) ds.style.display="none"; if(ps) ps.style.display="none";
+  }
+}
+
+hero();
+if (D.finished && D.games && D.games.length) renderGames();
+else { schedule(); setInterval(()=>{schedule();}, 30e3); }
+table();
+</script>
+</body>
+</html>

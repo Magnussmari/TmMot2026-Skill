@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- @orchestrator: Magnús Smárason | smarason.is  @created: 2026-06-12 -->
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>KA-2 · Eyjamótið 2026</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23081020'/><text x='16' y='22' font-family='Arial Black' font-size='13' font-weight='900' fill='%23f2b705' text-anchor='middle'>KA</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--night:#070d1c;--navy:#0c1530;--gold:#f2b705;--gold-soft:#ffd95e;--bone:#f4f1e8;--mute:#8d99b8}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--night);color:var(--bone);font-family:"Instrument Sans",sans-serif;display:grid;place-items:center;overflow:hidden;position:relative}
+body::before{content:"";position:fixed;inset:0;background:
+ radial-gradient(60rem 40rem at 70% -10%,rgba(242,183,5,.13),transparent 60%),
+ radial-gradient(50rem 50rem at 10% 110%,rgba(28,60,140,.35),transparent 60%),
+ repeating-linear-gradient(115deg,transparent 0 46px,rgba(255,255,255,.012) 46px 48px)}
+body::after{content:"";position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");pointer-events:none}
+.card{position:relative;z-index:2;text-align:center;padding:3rem 2rem;max-width:26rem;width:92vw;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.crest{width:84px;height:96px;margin:0 auto 1.4rem;display:block}
+.eyebrow{font-family:"Big Shoulders Display";font-weight:700;letter-spacing:.34em;font-size:.8rem;color:var(--gold);text-transform:uppercase}
+h1{font-family:"Big Shoulders Display";font-weight:900;font-size:clamp(3.2rem,12vw,4.6rem);line-height:.95;letter-spacing:.01em;margin:.4rem 0 .2rem}
+.sub{color:var(--mute);font-size:.95rem;margin-bottom:2.2rem}
+.pin{display:flex;gap:.6rem;justify-content:center;margin-bottom:1rem}
+.pin input{width:3.4rem;height:4.2rem;background:rgba(255,255,255,.04);border:1px solid rgba(244,241,232,.18);border-radius:.7rem;color:var(--bone);font-family:"Big Shoulders Display";font-weight:700;font-size:2.2rem;text-align:center;outline:none;transition:border-color .15s,box-shadow .15s;caret-color:var(--gold)}
+.pin input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(242,183,5,.18)}
+.pin.err input{border-color:#e0524f;animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.msg{min-height:1.4rem;font-size:.88rem;color:#e0807e}
+button{margin-top:.6rem;width:100%;padding:1rem;border:0;border-radius:.7rem;background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#1a1402;font-family:"Big Shoulders Display";font-weight:900;font-size:1.25rem;letter-spacing:.18em;cursor:pointer;transition:transform .12s,box-shadow .2s;box-shadow:0 10px 30px -12px rgba(242,183,5,.55)}
+button:hover{transform:translateY(-1px)}
+button:active{transform:translateY(1px)}
+.note{margin-top:1.6rem;font-size:.8rem;color:var(--mute);line-height:1.5}
+</style>
+</head>
+<body>
+<main class="card">
+  <svg class="crest" viewBox="0 0 84 96" fill="none" aria-hidden="true">
+    <path d="M42 3 79 14v36c0 22-16 36-37 43C21 86 5 72 5 50V14L42 3Z" stroke="#f2b705" stroke-width="2.4" fill="rgba(242,183,5,.06)"/>
+    <text x="42" y="50" text-anchor="middle" font-family="Big Shoulders Display" font-weight="900" font-size="30" fill="#f4f1e8">KA</text>
+    <text x="42" y="74" text-anchor="middle" font-family="Big Shoulders Display" font-weight="700" font-size="17" fill="#f2b705">·2·</text>
+  </svg>
+  <div class="eyebrow">Eyjamótið 2026</div>
+  <h1>KA-2</h1>
+  <p class="sub">Foreldrasvæði — sláðu inn PIN-númer hópsins</p>
+  <form id="f">
+    <div class="pin" id="boxes">
+      <input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Tala 1">
+      <input inputmode="numeric" maxlength="1" aria-label="Tala 2">
+      <input inputmode="numeric" maxlength="1" aria-label="Tala 3">
+      <input inputmode="numeric" maxlength="1" aria-label="Tala 4">
+    </div>
+    <div class="msg" id="msg"></div>
+    <button type="submit">OPNA</button>
+  </form>
+  <p class="note">Lokað svæði fyrir fjölskyldur KA-2.<br>PIN fæst hjá foreldrahópnum.</p>
+</main>
+<script>
+const ins=[...document.querySelectorAll(".pin input")],f=document.getElementById("f"),
+msg=document.getElementById("msg"),boxes=document.getElementById("boxes");
+ins[0].focus();
+ins.forEach((el,i)=>{
+  el.addEventListener("input",()=>{el.value=el.value.replace(/\D/g,"").slice(-1);
+    if(el.value&&i<3)ins[i+1].focus();
+    if(ins.every(x=>x.value))f.requestSubmit();});
+  el.addEventListener("keydown",e=>{if(e.key==="Backspace"&&!el.value&&i>0)ins[i-1].focus();});
+  el.addEventListener("paste",e=>{e.preventDefault();
+    const d=(e.clipboardData.getData("text")||"").replace(/\D/g,"").slice(0,4);
+    d.split("").forEach((c,j)=>ins[j].value=c);
+    if(d.length===4)f.requestSubmit();else ins[Math.min(d.length,3)].focus();});
+});
+f.addEventListener("submit",async e=>{
+  e.preventDefault();msg.textContent="";boxes.classList.remove("err");
+  const pin=ins.map(x=>x.value).join("");
+  if(pin.length<4)return;
+  try{
+    const r=await fetch("/pin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({pin})});
+    const j=await r.json();
+    if(j.ok)location.replace("/");
+    else{boxes.classList.add("err");msg.textContent=j.msg||"Rangt PIN.";ins.forEach(x=>x.value="");ins[0].focus();}
+  }catch{msg.textContent="Netvilla — reyndu aftur.";}
+});
+</script>
+</body>
+</html>

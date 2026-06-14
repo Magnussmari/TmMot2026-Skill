@@ -1,0 +1,46 @@
+{
+  "_comment": "MótsMinning dæmi-gögn. Allt á síðunni knýst héðan. Fylltu út og keyrðu docker compose up -d --build. Engin raunveruleg nöfn barna nema í 'kvedja' sem eigandinn skrifar sjálfur.",
+  "updated": "2026-06-13T20:51:00Z",
+  "team": "LIÐ-X",
+  "tournament": "Mótið 2026",
+  "group": "C10",
+  "finished": true,
+  "album_url": "https://photos.app.goo.gl/DEILT-ALBUM-HLEKKUR",
+  "pdf_url": "/media/minningabok.pdf",
+  "video_url": "",
+
+  "matches": [
+    { "id": "leikur1", "kickoff": "2026-06-13T09:30:00Z", "home": "LIÐ-X", "away": "Andstæðingur A", "venue": "Völlur 1", "result": { "home": 1, "away": 0 } }
+  ],
+  "groupResults": [
+    { "home": "LIÐ-X", "away": "Andstæðingur A", "hs": 1, "as": 0 }
+  ],
+  "teams": ["LIÐ-X", "Andstæðingur A", "Andstæðingur B", "Andstæðingur C"],
+
+  "wrapup": {
+    "record": { "games": 10, "w": 4, "l": 6, "gf": 14, "ga": 18 },
+    "headline": "Mótinu lokið",
+    "sub": "Tíu leikir á þremur dögum · Mótið 2026",
+    "summary": "Stutt, hlý samantekt um mótið — það sem tölurnar segja ekki.",
+    "thanks": "Takk fyrir mótið, krakkar. (Eigandinn skrifar þetta sjálfur.)"
+  },
+
+  "games": [
+    { "day": "Fimmtudagur", "group": "A14", "opp": "Andstæðingur A", "time": "13:40", "venue": "Völlur 1", "gf": 4, "ga": 1, "res": "S", "story": "Saga leiksins — handskrifuð eða mállíkans-aðstoðuð." }
+  ],
+
+  "analysis": {
+    "asof": "2026-06-13T20:51:00Z", "played": 560, "goals": 1967, "avg": 3.5, "teams": 112,
+    "ka2": { "gf": 14, "ga": 18, "w": 4, "d": 0, "l": 6, "p": 10, "def_pct": 49, "gf_avg_all": 17.6 },
+    "fun": [ { "label": "Markahæsti leikur mótsins", "value": "Lið Y – Lið Z 5–8" } ],
+    "ka_family": []
+  },
+
+  "pulse": {
+    "leikur1": { "series": [[0,80],[2,84],[4,110]], "max": 126, "avg": 102, "label": "Andstæðingur A", "complete": true, "asof": "2026-06-13T20:51:00Z" }
+  },
+
+  "story": { "eyebrow": "Mótinu lokið", "text": "Formáli minningabókar.", "hype": "Áfram LIÐ-X!" },
+  "kvedja": { "team": "Kveðja til liðsins (eigandi skrifar).", "pabbi": "Persónuleg kveðja (eigandi skrifar).", "pabbi_sign": "— frá ...", "pabbi_label": "Þvílíkur liðsandi" },
+  "gallery": [ { "src": "/media/g01.jpg", "cap": "" } ]
+}

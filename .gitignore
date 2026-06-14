@@ -1,0 +1,17 @@
+# myndað efni
+__pycache__/
+*.pyc
+_book/
+_work/
+_thumbs/
+index.tex
+*.log
+*.aux
+*.out
+.quarto/
+.DS_Store
+selection.json
+# vélarbundið / leyndarmál
+.env
+*.env
+photos.json
